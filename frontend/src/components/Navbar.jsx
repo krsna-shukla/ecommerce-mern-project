@@ -1,0 +1,133 @@
+import { Link } from "react-router-dom";
+
+
+function Navbar({ search, setSearch }) {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  return (
+    <nav className="fixed top-0 left-0 w-full bg-black text-white px-8 py-4 flex items-center z-50 shadow-lg">
+
+      {/* Logo */}
+      <h1 className="text-3xl font-bold text-blue-400">
+        ShopEasy
+      </h1>
+
+      {/* Search Bar */}
+      <div className="relative flex-1 mx-10">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full p-3 pl-10 rounded-md bg-white text-black"
+        />
+
+        <span className="absolute left-3 top-3">
+          🔍
+        </span>
+      </div>
+
+      {/* Navigation */}
+      <div className="flex gap-6 text-lg items-center">
+
+        {/* ADMIN NAVBAR */}
+        {role === "admin" && (
+          <>
+            <Link
+              to="/admin"
+              className="hover:text-blue-400 transition"
+            >
+              Dashboard
+            </Link>
+
+            <Link
+              to="/admin-products"
+              className="hover:text-blue-400 transition"
+            >
+              Products
+            </Link>
+
+            <Link
+              to="/add-product"
+              className="hover:text-blue-400 transition"
+            >
+              Add Product
+            </Link>
+
+            <Link
+              to="/admin/orders"
+              className="hover:text-blue-400 transition"
+            >
+              Orders
+            </Link>
+          </>
+        )}
+
+        {/* USER NAVBAR */}
+        {role !== "admin" && (
+          <>
+            <Link
+              to="/"
+              className="hover:text-blue-400 transition"
+            >
+              Home
+            </Link>
+
+            {token && (
+              <Link
+                to="/cart"
+                className="hover:text-blue-400 transition"
+              >
+                Cart
+              </Link>
+            )}
+
+            {token && (
+              <Link
+                to="/myorders"
+                className="hover:text-blue-400 transition"
+              >
+                My Orders
+              </Link>
+            )}
+          </>
+        )}
+
+        {/* LOGIN / REGISTER */}
+        {!token && (
+          <>
+            <Link
+              to="/login"
+              className="hover:text-blue-400 transition"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="hover:text-blue-400 transition"
+            >
+              Register
+            </Link>
+          </>
+        )}
+
+        {/* LOGOUT */}
+        {token && (
+          <button
+  onClick={() => {
+    localStorage.clear();
+    window.location.href = "/login";
+  }}
+  className="hover:text-red-400 transition"
+>
+  Logout
+</button>
+        )}
+      </div>
+    </nav>
+  );
+}
+
+export default Navbar;
