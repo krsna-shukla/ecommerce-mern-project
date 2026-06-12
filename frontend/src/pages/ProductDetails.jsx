@@ -58,10 +58,10 @@ function ProductDetails() {
       <div className="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl p-10 grid md:grid-cols-2 gap-10">
 
         <img
-          src={`http://localhost:5000${product.image}`}
-          alt={product.name}
-          className="w-full h-[450px] object-cover rounded-2xl"
-        />
+  src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
+  alt={product.name}
+  className="w-full h-[450px] object-contain rounded-xl"
+/>
 
         <div>
 
