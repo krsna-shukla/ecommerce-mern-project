@@ -195,10 +195,9 @@ function Home({ search }) {
               className="bg-white rounded-3xl shadow-lg p-5 cursor-pointer hover:scale-105 transition duration-300"
             >
               <img
-                src={`http://localhost:5000${product.image}`}
-                alt={product.name}
-                className="w-full h-60 object-cover rounded-xl"
-              />
+  src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
+  alt={product.name}
+/>
 
               <h2 className="text-xl font-bold mt-4 text-gray-800">
                 {product.name}
