@@ -197,6 +197,7 @@ function Home({ search }) {
               <img
   src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
   alt={product.name}
+  className="w-full h-64 object-cover rounded-xl"
 />
 
               <h2 className="text-xl font-bold mt-4 text-gray-800">
