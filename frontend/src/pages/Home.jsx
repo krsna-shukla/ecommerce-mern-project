@@ -200,27 +200,29 @@ function Home({ search }) {
   className="w-full h-64 object-cover rounded-xl"
 />
               
-              <h2 className="text-xl font-bold mt-4 text-gray-800">
-                {product.name}
-              </h2>
+              <div className="flex-grow">
+  <h2 className="text-xl font-bold mt-4 text-gray-800">
+    {product.name}
+  </h2>
 
-              <p className="text-gray-500 mt-2 text-sm line-clamp-2">
-                {product.description}
-              </p>
+  <p className="text-gray-500 mt-2 text-sm line-clamp-2">
+    {product.description}
+  </p>
 
-              <p className="text-3xl font-bold text-blue-600 mt-4">
-                ₹ {product.price}
-              </p>
+  <p className="text-3xl font-bold text-blue-600 mt-4">
+    ₹ {product.price}
+  </p>
+</div>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToCart(product._id);
-                }}
-                className="bg-black hover:bg-gray-800 text-white py-3 rounded-xl mt-5 w-full font-semibold transition duration-300"
-              >
-                Add To Cart
-              </button>
+<button
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(product._id);
+  }}
+  className="bg-black hover:bg-gray-800 text-white py-3 rounded-xl mt-5 w-full font-semibold"
+>
+  Add To Cart
+</button>
             </div>
           ))
         ) : (
