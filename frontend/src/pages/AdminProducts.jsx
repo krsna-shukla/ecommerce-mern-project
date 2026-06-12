@@ -62,7 +62,7 @@ function AdminProducts() {
               >
                 <td className="p-4">
                   <img
-                    src={`http://localhost:5000${product.image}`}
+                    src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
                     alt={product.name}
                     className="w-20 h-20 object-cover mx-auto rounded"
                   />
