@@ -197,7 +197,7 @@ function Home({ search }) {
               <img
   src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
   alt={product.name}
-  className="w-full h-64 object-cover rounded-xl"
+  className="w-full h-60 object-cover rounded-xl"
 />
               
               <div className="flex-grow">
