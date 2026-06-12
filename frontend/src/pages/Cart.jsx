@@ -104,13 +104,13 @@ function Cart() {
           {cart?.products?.map((item) => (
             <div
               key={item._id}
-              className="bg-white rounded-2xl shadow-lg p-5 flex items-center justify-between"
+              className="bg-white rounded-2xl shadow-lg p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-5"
             >
-              <div className="flex items-center gap-5">
+              <div className="flex flex-col sm:flex-row items-center gap-5 w-full">
                 <img
                   src={`${BACKEND_URL}${item.product.image}`}
                   alt={item.product.name}
-                  className="w-28 h-28 object-cover rounded-xl"
+                  className="w-32 h-32 object-cover rounded-xl"
                 />
 
                 <div>
@@ -122,7 +122,7 @@ function Cart() {
                     ₹ {item.product.price}
                   </p>
 
-                  <div className="flex items-center gap-3 mt-3">
+                  <div className="flex items-center gap-3 mt-3 flex-wrap">
                     <button
                       onClick={() =>
                         updateQuantity(
@@ -154,7 +154,7 @@ function Cart() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-row md:flex-col gap-3 justify-center">
                 <button
                   onClick={() =>
                     removeFromCart(item.product._id)
