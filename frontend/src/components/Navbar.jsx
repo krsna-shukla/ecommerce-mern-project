@@ -6,7 +6,7 @@ function Navbar({ search, setSearch }) {
   const role = localStorage.getItem("role");
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black text-white px-8 py-4 flex items-center z-50 shadow-lg">
+    <nav className="fixed top-0 left-0 w-full bg-black text-white px-4 md:px-8 py-4 flex flex-col md:flex-row items-center z-50 shadow-lg gap-4">
 
       {/* Logo */}
       <h1 className="text-3xl font-bold text-blue-400">
@@ -14,7 +14,7 @@ function Navbar({ search, setSearch }) {
       </h1>
 
       {/* Search Bar */}
-      <div className="relative flex-1 mx-10">
+      <div className="relative w-full md:flex-1 md:mx-10">
         <input
           type="text"
           placeholder="Search products..."
@@ -29,7 +29,7 @@ function Navbar({ search, setSearch }) {
       </div>
 
       {/* Navigation */}
-      <div className="flex gap-6 text-lg items-center">
+      <div className="flex flex-wrap justify-center gap-4 text-sm md:text-lg items-center">
 
         {/* ADMIN NAVBAR */}
         {role === "admin" && (
