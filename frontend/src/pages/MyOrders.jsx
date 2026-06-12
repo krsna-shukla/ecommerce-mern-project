@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import API from "../services/api";
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -12,14 +12,11 @@ function MyOrders() {
     try {
       const token = localStorage.getItem("token");
 
-      const { data } = await axios.get(
-        "http://localhost:5000/api/orders/myorders",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const { data } = await API.get("/orders/myorders", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setOrders(data);
     } catch (error) {
