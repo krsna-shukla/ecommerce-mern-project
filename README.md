@@ -92,15 +92,6 @@ cd frontend
 npm install
 npm run dev
 
-## Screenshots
-
-* Home Page 
-* Product Details
-* Shopping Cart
-* My Orders
-* Admin Dashboard
-* Admin Orders
-
 ## Author
 
 Krishna Shukla
