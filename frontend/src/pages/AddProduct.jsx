@@ -23,7 +23,7 @@ function AddProduct() {
       formData.append("image", image);
       formData.append("category", category);
 
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.post(
         "/products",
