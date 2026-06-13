@@ -92,7 +92,7 @@ function Home({ search }) {
 
 {/* Categories */}
 <div className="px-10 py-8">
-  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+  <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
     Shop by Category
   </h2>
 
@@ -104,7 +104,7 @@ function Home({ search }) {
       ${
         selectedCategory === "All"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">🛍️</div>
@@ -117,7 +117,7 @@ function Home({ search }) {
       ${
         selectedCategory === "Fashion"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">👕</div>
@@ -130,7 +130,7 @@ function Home({ search }) {
       ${
         selectedCategory === "Electronics"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">📱</div>
@@ -143,7 +143,7 @@ function Home({ search }) {
       ${
         selectedCategory === "Shoes"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">👟</div>
@@ -156,7 +156,7 @@ function Home({ search }) {
       ${
         selectedCategory === "Watches"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">⌚</div>
@@ -169,7 +169,7 @@ function Home({ search }) {
       ${
         selectedCategory === "Sports"
           ? "bg-blue-100 ring-2 ring-blue-500"
-          : "bg-white hover:shadow-xl hover:-translate-y-2"
+          : "bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl hover:-translate-y-2"
       }`}
     >
       <div className="text-5xl mb-2">🏏</div>
@@ -190,10 +190,10 @@ function Home({ search }) {
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <div
-              key={product._id}
-              onClick={() => navigate(`/product/${product._id}`)}
-              className="bg-white dark:bg-gray-800 text-black dark:text-white"
-            >
+  key={product._id}
+  onClick={() => navigate(`/product/${product._id}`)}
+  className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-2xl shadow-lg p-5 flex flex-col cursor-pointer hover:scale-105 transition-all duration-300"
+>
               <img
   src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
   alt={product.name}
@@ -201,11 +201,11 @@ function Home({ search }) {
 />
               
               <div className="flex-grow">
-  <h2 className="text-xl font-bold mt-4 text-gray-800">
+  <h2 className="text-xl font-bold mt-4 text-gray-800 dark:text-white">
     {product.name}
   </h2>
 
-  <p className="text-gray-500 mt-2 text-sm line-clamp-2">
+  <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm line-clamp-2">
     {product.description}
   </p>
 
@@ -226,7 +226,7 @@ function Home({ search }) {
             </div>
           ))
         ) : (
-          <p className="text-center text-xl col-span-full text-gray-500">
+          <p className="text-center text-xl col-span-full text-gray-500 dark:text-gray-300">
             No products found
           </p>
         )}
