@@ -9,7 +9,7 @@ function Cart() {
 
   const fetchCart = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       const res = await API.get("/cart", {
         headers: {
@@ -26,7 +26,7 @@ function Cart() {
 
   const updateQuantity = async (productId, action) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.put(
         "/cart/update",
@@ -49,7 +49,7 @@ function Cart() {
 
   const removeFromCart = async (productId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.delete("/cart/remove", {
         headers: {
@@ -66,7 +66,7 @@ function Cart() {
 
   const placeOrder = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.post(
         "/orders",
