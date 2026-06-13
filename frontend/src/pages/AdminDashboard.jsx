@@ -11,7 +11,7 @@ function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       const productsRes = await API.get("/products");
 
