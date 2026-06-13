@@ -7,27 +7,28 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await API.post("/auth/login", {
-        email,
-        password,
-      });
+  try {
+    const { data } = await API.post("/auth/login", {
+      email,
+      password,
+    });
 
-      sessionStorage.setItem("token", data.token);
-sessionStorage.setItem("role", data.role);
+    sessionStorage.setItem("token", data.token);
+    sessionStorage.setItem("role", data.role);
 
-      alert("Login Successful");
+    alert("Login Successful");
 
-      navigate("/");
-      window.location.reload();
+    navigate("/");
+    window.location.reload();
 
-    } catch (error) {
-      alert("Login Failed");
-    }
-  };
+  } catch (error) {
+    console.log(error);
+    alert("Login Failed");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
