@@ -64,7 +64,7 @@ function Home({ search }) {
 });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-blue-50 to-gray-200">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-all duration-300">
       {/* Banner */}
       <div className="pt-32 md:pt-24 px-6">
   <div className="relative">
@@ -192,7 +192,7 @@ function Home({ search }) {
             <div
               key={product._id}
               onClick={() => navigate(`/product/${product._id}`)}
-              className="bg-white rounded-3xl shadow-lg p-5 cursor-pointer hover:scale-105 transition duration-300 flex flex-col h-full"
+              className="bg-white dark:bg-gray-800 text-black dark:text-white"
             >
               <img
   src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
