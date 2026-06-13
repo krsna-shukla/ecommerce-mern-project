@@ -7,7 +7,7 @@ function AdminOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
 
         const { data } = await API.get("/orders", {
           headers: {
@@ -27,7 +27,7 @@ function AdminOrders() {
 
   const updateStatus = async (id) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.put(
         `/orders/${id}`,
