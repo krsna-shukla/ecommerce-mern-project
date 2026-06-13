@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 
 function Navbar({ search, setSearch }) {
-  const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
+  const token = sessionStorage.getItem("token");
+  const role = sessionStorage.getItem("role")
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black text-white px-4 md:px-8 py-4 flex flex-col md:flex-row items-center z-50 shadow-lg gap-4">
@@ -117,7 +117,7 @@ function Navbar({ search, setSearch }) {
         {token && (
           <button
   onClick={() => {
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "/login";
   }}
   className="hover:text-red-400 transition"
