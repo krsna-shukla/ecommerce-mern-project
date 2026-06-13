@@ -46,7 +46,7 @@ function AdminProducts() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 pt-24 px-6 md:px-10">
+    <div className="min-h-screen bg-gray-100 pt-32 px-6 md:px-10">
 
       {/* Heading */}
       <div className="flex justify-between items-center mb-8">
