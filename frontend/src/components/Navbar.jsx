@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Navbar({ search, setSearch }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const token = sessionStorage.getItem("token");
   const role = sessionStorage.getItem("role");
+  const location = useLocation();
+
+useEffect(() => {
+  setMenuOpen(false);
+}, [location]);
 
   const logout = () => {
     sessionStorage.clear();
