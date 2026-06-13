@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FaMoon, FaSun } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 
@@ -7,19 +6,19 @@ function Navbar({ search, setSearch }) {
   const token = sessionStorage.getItem("token");
   const role = sessionStorage.getItem("role");
 
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
+const [darkMode, setDarkMode] = useState(
+  sessionStorage.getItem("theme") === "dark"
+);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+useEffect(() => {
+  if (darkMode) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
+  sessionStorage.setItem("theme", darkMode ? "dark" : "light");
+}, [darkMode]);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black dark:bg-gray-950 text-white px-4 md:px-8 py-4 flex flex-col md:flex-row items-center z-50 shadow-lg gap-4">
@@ -120,7 +119,7 @@ function Navbar({ search, setSearch }) {
               Login
             </Link>
 
-            <Link
+<Link
   to="/register"
   className="hover:text-blue-400 transition"
 >
@@ -129,7 +128,7 @@ function Navbar({ search, setSearch }) {
 
 <button
   onClick={() => setDarkMode(!darkMode)}
-  className="hover:text-yellow-400 transition text-lg"
+  className="text-xl hover:text-yellow-400 transition"
 >
   {darkMode ? "☀️" : "🌙"}
 </button>
