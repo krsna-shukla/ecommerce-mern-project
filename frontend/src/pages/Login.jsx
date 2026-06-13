@@ -16,8 +16,8 @@ function Login() {
         password,
       });
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.role);
+      sessionStorage.setItem("token", data.token);
+sessionStorage.setItem("role", data.role);
 
       alert("Login Successful");
 
