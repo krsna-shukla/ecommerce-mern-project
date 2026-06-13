@@ -45,7 +45,7 @@ function AdminProducts() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 pt-32 lg:pt-24 px-4 md:px-8">
+    <div className="min-h-screen bg-gray-100 pt-44 lg:pt-28 px-4 md:px-8">
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
