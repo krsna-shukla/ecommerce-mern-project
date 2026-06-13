@@ -10,7 +10,7 @@ function MyOrders() {
 
   const fetchOrders = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       const { data } = await API.get("/orders/myorders", {
         headers: {
