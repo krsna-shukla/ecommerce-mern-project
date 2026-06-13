@@ -51,7 +51,7 @@ function AdminOrders() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8 py-6 pt-44 lg:pt-28">
+    <div className="min-h-screen bg-gray-100 px-4 md:px-8 py-6 pt-40 lg:pt-28">
 
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
         Admin Orders
