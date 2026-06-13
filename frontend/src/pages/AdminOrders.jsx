@@ -52,7 +52,7 @@ function AdminOrders() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-10 pt-24">
+    <div className="max-w-6xl mx-auto p-10 pt-32 md:pt-24">
       <h1 className="text-4xl font-bold mb-8 text-center">
         Admin Orders
       </h1>
