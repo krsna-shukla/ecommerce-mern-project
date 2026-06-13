@@ -28,7 +28,7 @@ function AdminProducts() {
     if (!confirmDelete) return;
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await API.delete(`/products/${id}`, {
         headers: {
