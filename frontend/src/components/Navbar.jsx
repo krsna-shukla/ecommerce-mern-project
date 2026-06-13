@@ -131,7 +131,7 @@ function Navbar({ search, setSearch }) {
   onClick={() => setDarkMode(!darkMode)}
   className="hover:text-yellow-400 transition text-lg"
 >
-  {darkMode ? <FaSun /> : <FaMoon />}
+  {darkMode ? "☀️" : "🌙"}
 </button>
           </>
         )}
