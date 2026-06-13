@@ -3,7 +3,21 @@ import { Link } from "react-router-dom";
 
 function Navbar({ search, setSearch }) {
   const token = sessionStorage.getItem("token");
-  const role = sessionStorage.getItem("role")
+  const role = sessionStorage.getItem("role");
+
+  const [darkMode, setDarkMode] = useState(
+  localStorage.getItem("theme") === "dark"
+);
+
+useEffect(() => {
+  if (darkMode) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+}, [darkMode]);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black text-white px-4 md:px-8 py-4 flex flex-col md:flex-row items-center z-50 shadow-lg gap-4">
@@ -12,6 +26,14 @@ function Navbar({ search, setSearch }) {
       <h1 className="text-3xl font-bold text-blue-400">
         ShopEasy
       </h1>
+
+      {/* Dark mode */}
+      <button
+  onClick={() => setDarkMode(!darkMode)}
+  className="text-xl"
+>
+  {darkMode ? "☀️" : "🌙"}
+</button>
 
       {/* Search Bar */}
       <div className="relative w-full md:flex-1 md:mx-10">
