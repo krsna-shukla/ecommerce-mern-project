@@ -53,7 +53,7 @@ function AddProduct() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center pt-24 px-4">
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center pt-32 md:pt-24 px-4">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-xl">
 
         <h1 className="text-3xl font-bold text-center mb-6">
