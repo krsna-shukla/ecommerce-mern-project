@@ -118,7 +118,7 @@ function Navbar({ search, setSearch }) {
           <button
   onClick={() => {
     sessionStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/";
   }}
   className="hover:text-red-400 transition"
 >
