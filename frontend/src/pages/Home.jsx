@@ -23,7 +23,7 @@ function Home({ search }) {
 
   const addToCart = async (productId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       if (!token) {
     alert("Please Login First");
