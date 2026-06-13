@@ -66,7 +66,7 @@ function Home({ search }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 via-blue-50 to-gray-200">
       {/* Banner */}
-      <div className="pt-24 px-6">
+      <div className="pt-32 md:pt-24 px-6">
   <div className="relative">
     <img
       src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1600&auto=format&fit=crop"
