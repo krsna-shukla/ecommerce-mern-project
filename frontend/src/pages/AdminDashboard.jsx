@@ -34,7 +34,7 @@ function AdminDashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8 lg:px-10 pt-40 lg:pt-28">
+    <div className="min-h-screen bg-gray-100 px-4 md:px-8 lg:px-10 pt-44 lg:pt-28">
 
       {/* Heading */}
       <h1 className="text-3xl md:text-4xl font-bold text-center lg:text-left mb-8">
