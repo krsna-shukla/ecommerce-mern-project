@@ -1,155 +1,150 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-
 function Navbar({ search, setSearch }) {
   const token = sessionStorage.getItem("token");
   const role = sessionStorage.getItem("role");
+  const [scrolled, setScrolled] = useState(false);
 
-const [darkMode, setDarkMode] = useState(
-  sessionStorage.getItem("theme") === "dark"
-);
-
-useEffect(() => {
-  if (darkMode) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-
-  sessionStorage.setItem("theme", darkMode ? "dark" : "light");
-}, [darkMode]);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black dark:bg-gray-950 text-white px-4 md:px-8 py-4 flex flex-col md:flex-row items-center z-50 shadow-lg gap-4">
-
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "shadow-2xl" : ""
+      }`}
+      style={{
+        background: "#1A1A1A",
+        borderBottom: "1px solid #2E2E2E",
+        height: "64px",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 2rem",
+        gap: "1.5rem",
+      }}
+    >
       {/* Logo */}
-      <h1 className="text-3xl font-bold text-blue-400">
-        ShopEasy
-      </h1>
+      <Link to="/" style={{ textDecoration: "none", flexShrink: 0 }}>
+        <span
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "1.4rem",
+            color: "#D4A843",
+            letterSpacing: "0.03em",
+          }}
+        >
+          ShopEasy
+        </span>
+      </Link>
 
       {/* Search Bar */}
-      <div className="relative w-full md:flex-1 md:mx-10">
+      <div
+        style={{
+          flex: 1,
+          maxWidth: "420px",
+          display: "flex",
+          alignItems: "center",
+          background: "#252525",
+          border: "1px solid #2E2E2E",
+          borderRadius: "8px",
+          padding: "7px 14px",
+          gap: "8px",
+        }}
+      >
+        <span style={{ color: "#666", fontSize: "0.9rem" }}>🔍</span>
         <input
           type="text"
           placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full p-3 pl-10 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
+          style={{
+            background: "none",
+            border: "none",
+            color: "#FAFAF8",
+            fontSize: "0.85rem",
+            outline: "none",
+            width: "100%",
+          }}
         />
-
-        <span className="absolute left-3 top-3">
-          🔍
-        </span>
       </div>
 
-      {/* Navigation */}
-      <div className="flex flex-wrap justify-center gap-4 text-sm md:text-lg items-center">
-
-        {/* ADMIN NAVBAR */}
-        {role === "admin" && (
+      {/* Nav Links */}
+      <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "2rem" }}>
+        {role === "admin" ? (
           <>
-            <Link
-              to="/admin"
-              className="hover:text-blue-400 transition"
-            >
-              Dashboard
-            </Link>
-
-            <Link
-              to="/admin-products"
-              className="hover:text-blue-400 transition"
-            >
-              Products
-            </Link>
-
-            <Link
-              to="/add-product"
-              className="hover:text-blue-400 transition"
-            >
-              Add Product
-            </Link>
-
-            <Link
-              to="/admin/orders"
-              className="hover:text-blue-400 transition"
-            >
-              Orders
-            </Link>
+            {[
+              { to: "/admin", label: "Dashboard" },
+              { to: "/admin-products", label: "Products" },
+              { to: "/add-product", label: "Add Product" },
+              { to: "/admin/orders", label: "Orders" },
+            ].map(({ to, label }) => (
+              <Link key={to} to={to} style={navLinkStyle}>
+                {label}
+              </Link>
+            ))}
+          </>
+        ) : (
+          <>
+            <Link to="/" style={navLinkStyle}>Home</Link>
+            {token && <Link to="/cart" style={navLinkStyle}>Cart</Link>}
+            {token && <Link to="/myorders" style={navLinkStyle}>My Orders</Link>}
           </>
         )}
 
-        {/* USER NAVBAR */}
-        {role !== "admin" && (
-          <>
-            <Link
-              to="/"
-              className="hover:text-blue-400 transition"
-            >
-              Home
-            </Link>
-
-            {token && (
-              <Link
-                to="/cart"
-                className="hover:text-blue-400 transition"
-              >
-                Cart
-              </Link>
-            )}
-
-            {token && (
-              <Link
-                to="/myorders"
-                className="hover:text-blue-400 transition"
-              >
-                My Orders
-              </Link>
-            )}
-          </>
-        )}
-
-        {/* LOGIN / REGISTER */}
         {!token && (
           <>
+            <Link to="/login" style={navLinkStyle}>Login</Link>
             <Link
-              to="/login"
-              className="hover:text-blue-400 transition"
+              to="/register"
+              style={{
+                ...navLinkStyle,
+                background: "#D4A843",
+                color: "#0F0F0F",
+                padding: "8px 20px",
+                borderRadius: "4px",
+                fontWeight: "600",
+              }}
             >
-              Login
+              Register
             </Link>
-
-<Link
-  to="/register"
-  className="hover:text-blue-400 transition"
->
-  Register
-</Link>
-
-<button
-  onClick={() => setDarkMode(!darkMode)}
-  className="text-xl hover:text-yellow-400 transition"
->
-  {darkMode ? "☀️" : "🌙"}
-</button>
           </>
         )}
 
-        {/* LOGOUT */}
         {token && (
           <button
-  onClick={() => {
-    sessionStorage.clear();
-    window.location.href = "/login";
-  }}
-  className="hover:text-red-400 transition"
->
-  Logout
-</button>
+            onClick={() => {
+              sessionStorage.clear();
+              window.location.href = "/login";
+            }}
+            style={{
+              ...navLinkStyle,
+              background: "none",
+              border: "1px solid #2E2E2E",
+              padding: "7px 18px",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Logout
+          </button>
         )}
       </div>
     </nav>
   );
 }
+
+const navLinkStyle = {
+  color: "#999",
+  fontSize: "0.82rem",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  textDecoration: "none",
+  transition: "color 0.2s",
+  fontFamily: "'Inter', sans-serif",
+};
 
 export default Navbar;

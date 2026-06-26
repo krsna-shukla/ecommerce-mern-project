@@ -2,8 +2,25 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-html,
-body,
-#root {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+html, body, #root {
   min-height: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --gold: #B8860B;
+  --gold-light: #F5E6C8;
+  --gold-mid: #D4A843;
+  --dark: #0F0F0F;
+  --dark2: #1A1A1A;
+  --dark3: #252525;
+  --dark4: #333;
+  --border: #2E2E2E;
+  --accent: #C8A97E;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', serif;
 }

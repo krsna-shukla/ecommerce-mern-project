@@ -4,139 +4,78 @@ import API from "../services/api";
 function AdminOrders() {
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
+  useEffect(() => { fetchOrders(); }, []);
 
   const fetchOrders = async () => {
     try {
       const token = sessionStorage.getItem("token");
-
-      const { data } = await API.get("/orders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const { data } = await API.get("/orders", { headers: { Authorization: `Bearer ${token}` } });
       setOrders(data);
-    } catch (error) {
-      console.log(error.response?.data);
-    }
+    } catch (error) { console.log(error); }
   };
 
   const updateStatus = async (id) => {
     try {
       const token = sessionStorage.getItem("token");
-
-      await API.put(
-        `/orders/${id}`,
-        { status: "Shipped" },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setOrders(
-        orders.map((order) =>
-          order._id === id
-            ? { ...order, status: "Shipped" }
-            : order
-        )
-      );
-    } catch (error) {
-      console.log(error);
-    }
+      await API.put(`/orders/${id}`, { status: "Shipped" }, { headers: { Authorization: `Bearer ${token}` } });
+      setOrders(orders.map((o) => o._id === id ? { ...o, status: "Shipped" } : o));
+    } catch (error) { console.log(error); }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8 py-6 pt-40 lg:pt-28">
+    <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
+      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>Admin Orders</h1>
+        <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>{orders.length} total orders</p>
+      </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
-        Admin Orders
-      </h1>
-
-      <div className="space-y-6">
-
+      <div style={{ padding: "0 2rem 4rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
         {orders.map((order) => (
-          <div
-            key={order._id}
-            className="bg-white rounded-2xl shadow-lg p-5 md:p-6"
-          >
-
-            {/* User Info */}
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-5">
-
+          <div key={order._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.5rem" }}>
+            {/* Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.25rem" }}>
               <div>
-                <h2 className="font-bold text-xl">
-                  User: {order.user?.name}
-                </h2>
-
-                <p className="text-gray-500 break-all">
-                  {order.user?.email}
-                </p>
+                <p style={{ fontWeight: 500, fontSize: "0.95rem" }}>User: {order.user?.name}</p>
+                <p style={{ color: "#666", fontSize: "0.8rem" }}>{order.user?.email}</p>
               </div>
-
-              <span
-                className={`px-4 py-2 rounded-lg text-white text-center w-fit ${
-                  order.status === "Shipped"
-                    ? "bg-green-500"
-                    : "bg-yellow-500"
-                }`}
-              >
+              <span style={{
+                fontSize: "0.72rem", fontWeight: 600, padding: "5px 14px", borderRadius: "3px", textTransform: "uppercase", letterSpacing: "0.07em",
+                ...(order.status === "Shipped" ? { background: "rgba(45,106,79,.25)", color: "#6fcf97" } : { background: "rgba(212,168,67,.15)", color: "#D4A843" }),
+              }}>
                 {order.status}
               </span>
-
             </div>
 
             {/* Products */}
-            <div className="space-y-3">
-
+            <div style={{ borderTop: "1px solid #2E2E2E", paddingTop: "1rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {order.products.map((item) => (
-                <div
-                  key={item._id}
-                  className="border-b pb-3 flex justify-between items-center gap-4"
-                >
+                <div key={item._id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div>
-                    <h3 className="font-semibold text-lg">
-                      {item.product?.name || "Product Deleted"}
-                    </h3>
-
-                    <p className="text-gray-500">
-                      Qty: {item.quantity}
-                    </p>
+                    <p style={{ fontSize: "0.88rem", fontWeight: 500 }}>{item.product?.name || "Product Deleted"}</p>
+                    <p style={{ fontSize: "0.75rem", color: "#666" }}>Qty: {item.quantity}</p>
                   </div>
-
-                  <p className="font-bold text-blue-600 whitespace-nowrap">
-                    ₹ {item.product?.price || 0}
-                  </p>
+                  <span style={{ color: "#D4A843", fontWeight: 600 }}>₹ {item.product?.price || 0}</span>
                 </div>
               ))}
-
             </div>
 
             {/* Footer */}
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mt-5">
-
-              <h2 className="text-2xl font-bold">
-                Total: ₹ {order.totalPrice}
-              </h2>
-
+            <div style={{ borderTop: "1px solid #2E2E2E", marginTop: "1rem", paddingTop: "1rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div>
+                <p style={{ fontSize: "0.72rem", color: "#666", textTransform: "uppercase", letterSpacing: "0.06em" }}>Order Total</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem", color: "#D4A843", fontWeight: 600 }}>₹ {order.totalPrice}</p>
+              </div>
               {order.status !== "Shipped" && (
                 <button
                   onClick={() => updateStatus(order._id)}
-                  className="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl"
+                  style={{ background: "#D4A843", color: "#0F0F0F", fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "10px 22px", border: "none", borderRadius: "4px", cursor: "pointer" }}
                 >
                   Mark Shipped
                 </button>
               )}
-
             </div>
-
           </div>
         ))}
-
       </div>
     </div>
   );
