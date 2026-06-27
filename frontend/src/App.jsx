@@ -14,94 +14,31 @@ import AddProduct from "./pages/AddProduct";
 import ProductDetails from "./pages/ProductDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProducts from "./pages/AdminProducts";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Navbar search={search} setSearch={setSearch} />
 
-      <div className="flex-grow">
-
+      <div style={{ flex: 1 }}>
         <Routes>
-
-          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home search={search} />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
 
-          {/* User Routes */}
-          <Route
-            path="/"
-            element={
-                <Home search={search} />
-            }
-          />
+          <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+          <Route path="/myorders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
+          <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
 
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/myorders"
-            element={
-              <ProtectedRoute>
-                <MyOrders />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/product/:id"
-            element={
-                <ProductDetails />
-            }
-          />
-
-          {/* Admin Routes */}
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/admin-products"
-            element={
-              <ProtectedRoute>
-                <AdminProducts />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/admin/orders"
-            element={
-              <ProtectedRoute>
-                <AdminOrders />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/add-product"
-            element={
-              <ProtectedRoute>
-                <AddProduct />
-              </ProtectedRoute>
-            }
-          />
-
+          <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/admin-products" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
+          <Route path="/admin/orders" element={<ProtectedRoute><AdminOrders /></ProtectedRoute>} />
+          <Route path="/add-product" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
         </Routes>
-
       </div>
 
       <Footer />
