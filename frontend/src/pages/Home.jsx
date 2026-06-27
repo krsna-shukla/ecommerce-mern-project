@@ -236,7 +236,7 @@ function Home({ search }) {
                   {/* Image + hover overlay */}
                   <div style={{ position: "relative", aspectRatio: "1", overflow: "hidden", background: "#252525" }}>
                     <img
-                      src={`https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
+                      src={product.image?.startsWith("http") ? product.image : `https://ecommerce-mern-project-dimt.onrender.com${product.image}`}
                       alt={product.name}
                       style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.3s", transform: isHovered ? "scale(1.04)" : "scale(1)" }}
                     />

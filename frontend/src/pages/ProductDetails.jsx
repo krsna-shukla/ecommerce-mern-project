@@ -4,6 +4,40 @@ import API from "../services/api";
 
 const BACKEND = "https://ecommerce-mern-project-dimt.onrender.com";
 
+const ALL_FAKE_REVIEWS = [
+  [
+    { userName: "Rahul Sharma", rating: 5, comment: "Absolutely love this! Build quality is top-notch and arrived well-packaged. Highly recommend to anyone looking for value for money.", date: "12 Jun 2025" },
+    { userName: "Priya Mehta", rating: 4, comment: "Great product overall. Exactly as described. Delivery was quick too. Minor packaging issue but the product itself is perfect.", date: "3 May 2025" },
+    { userName: "Amit Verma", rating: 5, comment: "Exceeded my expectations! The quality is premium and worth every rupee. Already recommended it to my friends.", date: "28 Apr 2025" },
+    { userName: "Sneha Kapoor", rating: 4, comment: "Really good purchase. Used it for a week now and very satisfied. Would definitely buy again from this store.", date: "15 Apr 2025" },
+    { userName: "Vikram Singh", rating: 3, comment: "Decent product for the price. Nothing extraordinary but does the job well. Delivery was prompt.", date: "2 Apr 2025" },
+  ],
+  [
+    { userName: "Ananya Reddy", rating: 5, comment: "Superb quality! Fits perfectly and looks even better in person than in photos. Very impressed.", date: "20 Jun 2025" },
+    { userName: "Rohan Gupta", rating: 5, comment: "Best purchase I made this year. Premium material and immaculate packaging. Will definitely order again.", date: "14 May 2025" },
+    { userName: "Divya Nair", rating: 4, comment: "Very happy with this purchase. Quality is great, delivery was on time. Already recommended to friends!", date: "5 May 2025" },
+    { userName: "Arjun Patel", rating: 4, comment: "Good value for money. Product works as expected. Delivery was slightly delayed but overall satisfied.", date: "22 Apr 2025" },
+  ],
+  [
+    { userName: "Kavya Iyer", rating: 5, comment: "Outstanding product! Every detail is well crafted. Very impressed with the build quality and finish.", date: "18 Jun 2025" },
+    { userName: "Siddharth Rao", rating: 4, comment: "Solid purchase! Exactly as shown in images. Great customer experience overall.", date: "9 May 2025" },
+    { userName: "Pooja Sharma", rating: 5, comment: "Was skeptical at first but this totally exceeded my expectations. Premium feel and great quality!", date: "30 Apr 2025" },
+    { userName: "Nikhil Joshi", rating: 3, comment: "Product is decent but could be better for the price. Delivery was on time and packaging was good.", date: "18 Apr 2025" },
+    { userName: "Aisha Khan", rating: 5, comment: "Absolutely worth every rupee! Amazing quality and I have already placed a second order.", date: "7 Apr 2025" },
+  ],
+];
+
+const getFakeReviews = (productName) => {
+  const idx = (productName || "").length % ALL_FAKE_REVIEWS.length;
+  return ALL_FAKE_REVIEWS[idx];
+};
+
+const getFakeAvg = (reviews) => {
+  const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+  return avg.toFixed(1);
+};
+
+
 function StarRating({ value, onChange, size = 24 }) {
   const [hovered, setHovered] = useState(0);
   return (
@@ -222,7 +256,7 @@ function ProductDetails() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "3rem" }}>
           {/* Image */}
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden", aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src={`${BACKEND}${product.image}`} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "contain", padding: "1rem" }} />
+            <img src={product.image?.startsWith("http") ? product.image : `${BACKEND}${product.image}`} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "contain", padding: "1rem" }} />
           </div>
 
           {/* Info */}
@@ -233,9 +267,9 @@ function ProductDetails() {
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <StarRating value={Math.round(avgRating)} size={20} />
-              <span style={{ color: "#D4A843", fontWeight: 600 }}>{avgRating}</span>
-              <span style={{ color: "#666", fontSize: "0.8rem" }}>({reviews.length} reviews)</span>
+              <StarRating value={avgRating > 0 ? Math.round(avgRating) : 5} size={20} />
+              <span style={{ color: "#D4A843", fontWeight: 600 }}>{avgRating > 0 ? avgRating : getFakeAvg(getFakeReviews(product?.name))}</span>
+              <span style={{ color: "#666", fontSize: "0.8rem" }}>({reviews.length > 0 ? reviews.length : getFakeReviews(product?.name).length} reviews)</span>
             </div>
 
             <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", color: "#D4A843", fontWeight: 600 }}>₹ {product.price}</p>
@@ -271,36 +305,36 @@ function ProductDetails() {
         <div style={{ borderBottom: "1px solid #2E2E2E", marginBottom: "2rem", display: "flex", gap: "2rem" }}>
           {["reviews", "write"].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{ background: "none", border: "none", color: activeTab === tab ? "#D4A843" : "#666", fontSize: "0.82rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0 0 1rem", cursor: "pointer", borderBottom: `2px solid ${activeTab === tab ? "#D4A843" : "transparent"}` }}>
-              {tab === "reviews" ? `Reviews (${reviews.length})` : "Write a Review"}
+              {tab === "reviews" ? `Reviews (${reviews.length > 0 ? reviews.length : getFakeReviews(product?.name).length})` : "Write a Review"}
             </button>
           ))}
         </div>
 
         {activeTab === "reviews" && (
           <div>
-            {reviews.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "3rem", color: "#666" }}>
-                <p style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>✍️</p>
-                <p>No reviews yet. Be the first to review!</p>
-              </div>
-            ) : (
+            {(() => {
+              const displayReviews = reviews.length > 0 ? reviews : null;
+              const fakeReviews = getFakeReviews(product?.name);
+              const showFake = reviews.length === 0;
+              const allReviews = showFake ? fakeReviews : reviews;
+              return (
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {reviews.map(review => (
-                  <div key={review._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.25rem" }}>
+                {allReviews.map((review, idx) => (
+                  <div key={review._id || idx} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.25rem" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.75rem" }}>
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "4px" }}>
                           <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "#252525", border: "1px solid #D4A843", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", color: "#D4A843", fontSize: "0.85rem" }}>
-                            {review.userName?.[0]?.toUpperCase() || "U"}
+                            {(review.userName || "U")[0].toUpperCase()}
                           </div>
                           <div>
                             <p style={{ fontSize: "0.88rem", fontWeight: 500 }}>{review.userName}</p>
-                            <p style={{ fontSize: "0.72rem", color: "#666" }}>{new Date(review.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
+                            <p style={{ fontSize: "0.72rem", color: "#666" }}>{review.date || new Date(review.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
                           </div>
                         </div>
                         <StarRating value={review.rating} size={16} />
                       </div>
-                      {token && (
+                      {token && review._id && (
                         <button onClick={() => deleteReview(review._id)} style={{ background: "none", border: "none", color: "#666", cursor: "pointer", fontSize: "0.78rem" }}>Delete</button>
                       )}
                     </div>
@@ -308,7 +342,8 @@ function ProductDetails() {
                   </div>
                 ))}
               </div>
-            )}
+              );
+            })()}
           </div>
         )}
 

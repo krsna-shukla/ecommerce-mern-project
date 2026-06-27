@@ -53,7 +53,7 @@ function Wishlist() {
             {products.map(product => (
               <div key={product._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden" }}>
                 <div style={{ position: "relative", cursor: "pointer" }} onClick={() => navigate(`/product/${product._id}`)}>
-                  <img src={`${BACKEND}${product.image}`} alt={product.name} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", background: "#252525" }} />
+                  <img src={product.image?.startsWith("http") ? product.image : `${BACKEND}${product.image}`} alt={product.name} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", background: "#252525" }} />
                   <button onClick={e => { e.stopPropagation(); removeFromWishlist(product._id); }}
                     style={{ position: "absolute", top: "10px", right: "10px", background: "rgba(155,34,38,0.2)", border: "1px solid rgba(155,34,38,0.4)", color: "#e74c3c", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", fontSize: "0.9rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     ✕

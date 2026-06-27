@@ -186,7 +186,7 @@ function Cart() {
           ) : (
             cart.products.map((item) => (
               <div key={item._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.25rem", display: "flex", gap: "1.25rem", alignItems: "center" }}>
-                <img src={`${BACKEND_URL}${item.product.image}`} alt={item.product.name}
+                <img src={item.product.image?.startsWith("http") ? item.product.image : `${BACKEND_URL}${item.product.image}`} alt={item.product.name}
                   style={{ width: "90px", height: "90px", objectFit: "cover", borderRadius: "6px", background: "#252525" }} />
                 <div style={{ flex: 1 }}>
                   <h2 style={{ fontSize: "0.95rem", fontWeight: 500, marginBottom: "4px" }}>{item.product.name}</h2>

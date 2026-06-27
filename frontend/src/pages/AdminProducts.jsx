@@ -54,7 +54,7 @@ function AdminProducts() {
                     onMouseEnter={(e) => e.currentTarget.style.background = "#252525"}
                     onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}>
                     <td style={{ padding: "1rem", textAlign: "center" }}>
-                      <img src={`${BACKEND_URL}${product.image}`} alt={product.name} style={{ width: "64px", height: "64px", objectFit: "cover", borderRadius: "6px", margin: "0 auto" }} />
+                      <img src={product.image?.startsWith("http") ? product.image : `${BACKEND_URL}${product.image}`} alt={product.name} style={{ width: "64px", height: "64px", objectFit: "cover", borderRadius: "6px", margin: "0 auto" }} />
                     </td>
                     <td style={{ padding: "1rem", textAlign: "center", fontSize: "0.88rem", fontWeight: 500 }}>{product.name}</td>
                     <td style={{ padding: "1rem", textAlign: "center" }}>
