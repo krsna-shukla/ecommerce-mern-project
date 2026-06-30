@@ -24,12 +24,12 @@ function AdminOrders() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>Admin Orders</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>{orders.length} total orders</p>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div className="page-content" style={{ padding: "0 2rem 4rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
         {orders.map((order) => (
           <div key={order._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.5rem" }}>
             {/* Header */}

@@ -34,12 +34,12 @@ function Wishlist() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>My Wishlist</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>{products.length} saved item(s)</p>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem" }}>
+      <div className="page-content" style={{ padding: "0 2rem 4rem" }}>
         {products.length === 0 ? (
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "4rem", textAlign: "center" }}>
             <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>♡</div>
@@ -49,7 +49,7 @@ function Wishlist() {
             </button>
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "1.25rem" }}>
+          <div className="wishlist-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "1.25rem" }}>
             {products.map(product => (
               <div key={product._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden" }}>
                 <div style={{ position: "relative", cursor: "pointer" }} onClick={() => navigate(`/product/${product._id}`)}>

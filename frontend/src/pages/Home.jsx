@@ -110,7 +110,7 @@ function Home({ search }) {
       {search.trim() === "" && <div>
 
       {/* HERO */}
-      <div style={{
+      <div className="hero-section" style={{
         background: "linear-gradient(135deg,#0F0F0F 0%,#1C1408 50%,#0F0F0F 100%)",
         padding: "5rem 2rem",
         display: "flex",
@@ -127,13 +127,13 @@ function Home({ search }) {
             <span style={{ width: "24px", height: "1px", background: "#D4A843", display: "inline-block" }} />
             Limited Time Offer
           </div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.2rem", lineHeight: 1.1, color: "#FAFAF8", marginBottom: "1rem" }}>
+          <h1 className="hero-title" style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.2rem", lineHeight: 1.1, color: "#FAFAF8", marginBottom: "1rem" }}>
             Mega Sale <span style={{ color: "#D4A843" }}>50% OFF</span>
           </h1>
           <p style={{ color: "#999", fontSize: "0.95rem", lineHeight: 1.7, marginBottom: "2rem" }}>
             Discover curated collections across Fashion, Electronics, Sports & more — all at unbeatable prices.
           </p>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div className="hero-buttons" style={{ display: "flex", gap: "1rem" }}>
             <button onClick={() => document.getElementById("products-section").scrollIntoView({ behavior: "smooth" })}
               style={{ background: "#D4A843", color: "#0F0F0F", fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", padding: "13px 28px", border: "none", borderRadius: "4px", cursor: "pointer" }}>
               Shop Now
@@ -144,7 +144,7 @@ function Home({ search }) {
             </button>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "2.5rem", position: "relative", zIndex: 1, flexShrink: 0 }}>
+        <div className="hero-stats" style={{ display: "flex", gap: "2.5rem", position: "relative", zIndex: 1, flexShrink: 0 }}>
           {[["6+", "Products"], ["Fast", "Delivery"], ["24/7", "Support"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", color: "#D4A843" }}>{num}</div>
@@ -155,7 +155,7 @@ function Home({ search }) {
       </div>
 
       {/* TRUST STRIP */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem", padding: "1.5rem 2rem", borderBottom: "1px solid #2E2E2E" }}>
+      <div className="trust-strip" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem", padding: "1.5rem 2rem", borderBottom: "1px solid #2E2E2E" }}>
         {[["🚚","Free Shipping","Orders above ₹999"],["🔄","Easy Returns","30-day return policy"],["🔒","Secure Payment","100% safe checkout"],["⭐","Top Rated","4.8★ avg rating"]].map(([icon, t1, t2]) => (
           <div key={t1} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <span style={{ fontSize: "1.4rem", color: "#D4A843" }}>{icon}</span>
@@ -168,7 +168,7 @@ function Home({ search }) {
       </div>
 
       {/* CATEGORIES */}
-      <div style={{ padding: "2.5rem 2rem 1rem" }}>
+      <div className="category-row" style={{ padding: "2.5rem 2rem 1rem" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "1.25rem" }}>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#FAFAF8" }}>Shop by Category</h2>
         </div>
@@ -192,8 +192,8 @@ function Home({ search }) {
       </div>} {/* end search === "" */}
 
       {/* PRODUCTS */}
-      <div id="products-section" style={{ padding: "1rem 2rem 4rem" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
+      <div id="products-section" className="products-section" style={{ padding: "1rem 2rem 4rem" }}>
+        <div className="products-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#FAFAF8" }}>
             {search.trim() ? `Results for "${search}"` : "🔥 Trending Products"}
           </h2>
@@ -210,7 +210,7 @@ function Home({ search }) {
         </div>
 
         {filtered.length > 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "1.25rem" }}>
+          <div className="products-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "1.25rem" }}>
             {filtered.map((product, idx) => {
               const fakeReview = FAKE_REVIEWS[idx % FAKE_REVIEWS.length];
               const isWishlisted = wishlistIds.includes(product._id.toString());

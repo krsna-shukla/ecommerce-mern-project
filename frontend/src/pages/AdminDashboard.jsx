@@ -92,14 +92,14 @@ function AdminDashboard() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>Admin Dashboard</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>Store analytics & overview</p>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem" }}>
+      <div className="page-content" style={{ padding: "0 2rem 4rem" }}>
         {/* Stat Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.25rem", marginBottom: "2rem" }}>
+        <div className="admin-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.25rem", marginBottom: "2rem" }}>
           <StatCard label="Total Products" value={products.length} color="#7EB8F7" />
           <StatCard label="Total Orders" value={orders.length} color="#6fcf97" />
           <StatCard label="Revenue" value={`₹ ${totalRevenue.toLocaleString()}`} color={GOLD} />
@@ -107,7 +107,7 @@ function AdminDashboard() {
         </div>
 
         {/* Charts Row 1 */}
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "1.25rem", marginBottom: "1.25rem" }}>
+        <div className="admin-charts-row1" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "1.25rem", marginBottom: "1.25rem" }}>
           {/* Revenue Area Chart */}
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.5rem" }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", marginBottom: "1.5rem" }}>Revenue — Last 7 Days</h2>
@@ -144,7 +144,7 @@ function AdminDashboard() {
         </div>
 
         {/* Charts Row 2 */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "1.25rem", marginBottom: "2rem" }}>
+        <div className="admin-charts-row2" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "1.25rem", marginBottom: "2rem" }}>
           {/* Category Bar */}
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.5rem" }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", marginBottom: "1.5rem" }}>Products by Category</h2>

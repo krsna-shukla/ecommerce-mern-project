@@ -25,7 +25,7 @@ function AdminProducts() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
         <div>
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>Manage Products</h1>
           <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>Add, edit or remove products</p>
@@ -35,11 +35,11 @@ function AdminProducts() {
         </span>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem" }}>
+      <div className="page-content" style={{ padding: "0 2rem 4rem" }}>
         {products.length === 0 ? (
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "3rem", textAlign: "center", color: "#666" }}>No products found</div>
         ) : (
-          <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden" }}>
+          <div className="admin-table-wrap" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden" }}>
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#252525", borderBottom: "1px solid #2E2E2E" }}>

@@ -23,12 +23,12 @@ function MyOrders() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>My Orders</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>{orders.length} order(s) placed</p>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem", maxWidth: "800px", display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div className="page-content" style={{ padding: "0 2rem 4rem", maxWidth: "800px", display: "flex", flexDirection: "column", gap: "1rem" }}>
         {orders.length === 0 ? (
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "3rem", textAlign: "center", color: "#666" }}>
             <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📦</div>

@@ -21,7 +21,7 @@ function PaymentModal({ total, onClose, onSuccess }) {
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-      <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2rem", width: "100%", maxWidth: "480px", position: "relative", maxHeight: "90vh", overflowY: "auto" }}>
+      <div className="modal-box" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2rem", width: "100%", maxWidth: "480px", position: "relative", maxHeight: "90vh", overflowY: "auto" }}>
         
         {step !== 3 && (
           <button onClick={onClose} style={{ position: "absolute", top: "1rem", right: "1rem", background: "#252525", border: "1px solid #2E2E2E", color: "#999", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", fontSize: "1rem" }}>✕</button>
@@ -54,7 +54,7 @@ function PaymentModal({ total, onClose, onSuccess }) {
                   required maxLength={19} style={inputStyle}
                   onFocus={e => e.target.style.borderColor="#D4A843"} onBlur={e => e.target.style.borderColor="#2E2E2E"} />
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div className="grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div>
                   <label style={labelStyle}>Expiry</label>
                   <input placeholder="MM/YY" value={form.expiry} onChange={e => setForm({...form, expiry: e.target.value})} required maxLength={5} style={inputStyle}
@@ -168,14 +168,14 @@ function Cart() {
         />
       )}
 
-      <div style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
+      <div className="page-header" style={{ padding: "2.5rem 2rem 0", borderBottom: "1px solid #2E2E2E", marginBottom: "2rem" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", marginBottom: "0.5rem" }}>My Cart</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", paddingBottom: "1.5rem" }}>
           {cart?.products?.length || 0} item(s) in your cart
         </p>
       </div>
 
-      <div style={{ padding: "0 2rem 4rem", display: "grid", gridTemplateColumns: "1fr 340px", gap: "2rem", maxWidth: "1100px" }}>
+      <div className="page-content cart-layout" style={{ padding: "0 2rem 4rem", display: "grid", gridTemplateColumns: "1fr 340px", gap: "2rem", maxWidth: "1100px" }}>
         {/* Items */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {!cart?.products?.length ? (
@@ -185,9 +185,9 @@ function Cart() {
             </div>
           ) : (
             cart.products.map((item) => (
-              <div key={item._id} style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.25rem", display: "flex", gap: "1.25rem", alignItems: "center" }}>
+              <div key={item._id} className="cart-item" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", padding: "1.25rem", display: "flex", gap: "1.25rem", alignItems: "center" }}>
                 <img src={item.product.image?.startsWith("http") ? item.product.image : `${BACKEND_URL}${item.product.image}`} alt={item.product.name}
-                  style={{ width: "90px", height: "90px", objectFit: "cover", borderRadius: "6px", background: "#252525" }} />
+                  className="cart-item-img" style={{ width: "90px", height: "90px", objectFit: "cover", borderRadius: "6px", background: "#252525" }} />
                 <div style={{ flex: 1 }}>
                   <h2 style={{ fontSize: "0.95rem", fontWeight: 500, marginBottom: "4px" }}>{item.product.name}</h2>
                   <p style={{ color: "#D4A843", fontSize: "0.9rem", fontWeight: 600, marginBottom: "10px" }}>₹ {item.product.price}</p>
@@ -199,7 +199,7 @@ function Cart() {
                     <button onClick={() => updateQuantity(item.product._id, "increase")} style={qtyBtnStyle}>+</button>
                   </div>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-end" }}>
+                <div className="cart-item-actions" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-end" }}>
                   <span style={{ fontSize: "1rem", fontWeight: 600, color: "#D4A843" }}>₹ {item.product.price * item.quantity}</span>
                   <button onClick={() => removeFromCart(item.product._id)}
                     style={{ background: "none", border: "1px solid #2E2E2E", color: "#999", padding: "6px 14px", borderRadius: "4px", cursor: "pointer", fontSize: "0.78rem" }}>

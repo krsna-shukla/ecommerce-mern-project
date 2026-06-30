@@ -37,7 +37,7 @@ function AddProduct() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 1rem 2rem" }}>
-      <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2.5rem", width: "100%", maxWidth: "520px" }}>
+      <div className="form-card" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2.5rem", width: "100%", maxWidth: "520px" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Add Product</h1>
         <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "2rem" }}>Fill in the details to list a new product</p>
 

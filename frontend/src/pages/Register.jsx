@@ -26,7 +26,7 @@ function Register() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0F0F0F", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-      <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2.5rem", width: "100%", maxWidth: "400px" }}>
+      <div className="form-card" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2.5rem", width: "100%", maxWidth: "400px" }}>
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", color: "#D4A843", marginBottom: "0.5rem" }}>ShopEasy</div>
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", color: "#FAFAF8" }}>Create Account</h1>

@@ -85,7 +85,7 @@ function PaymentModal({ product, quantity, onClose }) {
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-      <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2rem", width: "100%", maxWidth: "480px", position: "relative" }}>
+      <div className="modal-box" style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "12px", padding: "2rem", width: "100%", maxWidth: "480px", position: "relative" }}>
         <button onClick={onClose} style={{ position: "absolute", top: "1rem", right: "1rem", background: "#252525", border: "1px solid #2E2E2E", color: "#999", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", fontSize: "1rem" }}>✕</button>
 
         {step === 1 && (
@@ -107,7 +107,7 @@ function PaymentModal({ product, quantity, onClose }) {
                 <label style={labelStyle}>Card Number</label>
                 <input placeholder="4242 4242 4242 4242" value={form.card} onChange={e => setForm({...form, card: e.target.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim().slice(0,19)})} required maxLength={19} style={inputStyle} onFocus={e => e.target.style.borderColor="#D4A843"} onBlur={e => e.target.style.borderColor="#2E2E2E"} />
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div className="grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div>
                   <label style={labelStyle}>Expiry</label>
                   <input placeholder="MM/YY" value={form.expiry} onChange={e => setForm({...form, expiry: e.target.value})} required maxLength={5} style={inputStyle} onFocus={e => e.target.style.borderColor="#D4A843"} onBlur={e => e.target.style.borderColor="#2E2E2E"} />
@@ -251,9 +251,9 @@ function ProductDetails() {
     <div style={{ minHeight: "100vh", background: "#0F0F0F", color: "#FAFAF8", paddingTop: "64px" }}>
       {showPayment && <PaymentModal product={product} quantity={quantity} onClose={() => setShowPayment(false)} />}
 
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "3rem 2rem" }}>
+      <div className="page-content" style={{ maxWidth: "1100px", margin: "0 auto", padding: "3rem 2rem" }}>
         {/* Product Section */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "3rem" }}>
+        <div className="pd-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "3rem" }}>
           {/* Image */}
           <div style={{ background: "#1A1A1A", border: "1px solid #2E2E2E", borderRadius: "8px", overflow: "hidden", aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img src={product.image?.startsWith("http") ? product.image : `${BACKEND}${product.image}`} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "contain", padding: "1rem" }} />
@@ -287,7 +287,7 @@ function ProductDetails() {
             </div>
 
             {/* Actions */}
-            <div style={{ display: "flex", gap: "0.75rem" }}>
+            <div className="pd-actions" style={{ display: "flex", gap: "0.75rem" }}>
               <button onClick={() => setShowPayment(true)} style={{ flex: 1, background: "#D4A843", color: "#0F0F0F", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "14px", border: "none", borderRadius: "4px", cursor: "pointer" }}>
                 Buy Now
               </button>
